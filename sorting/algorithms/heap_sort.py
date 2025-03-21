@@ -8,7 +8,8 @@ def left_child(x):
 def right_child(x):
     return 2*x+2
 
-def heapify(arr, n, i): 
+
+def heapify(arr, n, i):
     max_index = i
     l = left_child(i)
     r = right_child(i)
@@ -21,10 +22,12 @@ def heapify(arr, n, i):
         arr[i], arr[max_index] = arr[max_index], arr[i]
         heapify(arr, n, max_index)
 
+
 def build_heap(arr):
     n = len(arr)
     for i in range(parent(n-1), -1, -1):
         heapify(arr, n, i)
+
 
 def heap_sort(arr):
     n = len(arr)
@@ -33,9 +36,10 @@ def heap_sort(arr):
         arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
 
+
 # run test only when script is executed directly
-if(__name__ == "__main__"): 
-    array = fill_array() # using the input handling function from array_filler.py
+if __name__ == "__main__":
+    array = fill_array()
     print(f"array {array}")
     heap_sort(array)
     print(f"sorted array {array}")

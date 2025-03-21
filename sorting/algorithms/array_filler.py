@@ -1,6 +1,7 @@
 import random
 
-def fill_array(a = 0, b = 0): # filling the array with test values
+
+def fill_array(a=0, b=0):  # filling the array with test values
     n = int(input("Length of the array: "))
     random_array = input("Fill the array with random numbers? (Y/N): ")
     if random_array.lower() == "y":
