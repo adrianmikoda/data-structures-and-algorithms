@@ -1,36 +1,28 @@
 # leetcode problem no. 785
-
 from collections import deque
-moves = [[1, 0], [0, 1], [-1, 0] ,[0, -1]]
+
 
 class Solution(object):
-                
-    def numIslands(self, grid):
-        n = len(grid)
-        m = len(grid[0])
-        answer = 0
-
+    def BFS(self, graph, s, color):
         q = deque()
-        def BFS(s_pos):
-            
-            grid[s_pos[0]][s_pos[1]] = "X"
-            q.append(s_pos)
+        q.append(s)
+        color[s] = 0
 
-            while q:
-                curr_pos = q.popleft()
-                for move in moves:
-                    target_pos = (curr_pos[0]+move[0], curr_pos[1]+move[1])
-                    if (target_pos[0] >= 0 and target_pos[0] < n and
-                        target_pos[1] >= 0 and target_pos[1] < m and
-                        grid[target_pos[0]][target_pos[1]] == "1"):
+        while q:
+            u = q.popleft()
+            print(u)
+            for v in graph[u]:
+                if color[v] == -1:
+                    color[v] = (color[u]+1) % 2
+                    q.append(v)
+                elif color[v] == color[u]:
+                    return False
+        return True
 
-                        q.append(target_pos)
-                        grid[target_pos[0]][target_pos[1]] = "X"
-
-
-        for line in range(n):
-            for column in range(m):
-                if grid[line][column] == "1":
-                    answer += 1
-                    BFS((line, column))
-        return answer
+    def isBipartite(self, graph):
+        n = len(graph)
+        color = [-1 for i in range(n)]
+        for node in range(n):
+            if color[node] == -1 and not self.BFS(graph, node, color):
+                return False
+        return True

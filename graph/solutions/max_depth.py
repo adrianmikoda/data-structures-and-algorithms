@@ -14,7 +14,7 @@ class Solution(object):
             return
         self.dfs(current.left, depth+1)
         self.dfs(current.right, depth+1)
-            
+
     def maxDepth(self, root):
         self.answer = 0
         self.dfs(root, 1)
