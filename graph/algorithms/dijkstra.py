@@ -1,5 +1,6 @@
 # implementation of the Dijkstra's Algorithm
-
+# edge - (target, cost)
+from graph_filler import fill_graph
 from queue import PriorityQueue
 import math
 
@@ -13,8 +14,6 @@ def num_gen(value=0):
 
 
 order = num_gen()
-# edge (target, cost)
-G = [[(1, 6), (5, 10)], [], [(3, 20)], [], [], [(2, 10), (4, 8)]]
 
 
 def dijkstra(adjacency_list, start):
@@ -39,4 +38,9 @@ def dijkstra(adjacency_list, start):
     print(f"parent: {parent}")
 
 
-dijkstra(G, 0)
+if __name__ == "__main__":
+    G = fill_graph()[0]
+    print("")
+    print(f"Adjacency list representation: {G}")
+    s = int(input("Enter the starting vertex: "))
+    dijkstra(G, 0)
