@@ -6,35 +6,24 @@ import math
 
 pq = PriorityQueue()
 
-
-def num_gen(value=0):
-    while True:
-        yield value
-        value += 1
-
-
-order = num_gen()
-
-
 def dijkstra(adjacency_list, start):
     vertices = len(adjacency_list)
-    d = [math.inf for i in range(vertices)]
+    cost = [math.inf for i in range(vertices)]
     parent = [-1 for i in range(vertices)]
-    d[start] = 0
+    # cost[start] = 0
 
     pq = PriorityQueue()
-    pq.put((0, next(order), start))
+    pq.put((0, start))
 
     while not pq.empty():
-        current = pq.get()
-        u = current[2]
-        for v, cost in adjacency_list[u]:
-            if d[u] + cost < d[v]:
-                d[v] = d[u] + cost
+        current_cost, u = pq.get()
+        cost[u] = current_cost
+        for v, edge_cost in adjacency_list[u]:
+            if cost[v] == math.inf:
                 parent[v] = u
-                pq.put((cost, next(order), v))
+                pq.put((current_cost+edge_cost, v))
 
-    print(f"d: {d}")
+    print(f"d: {cost}")
     print(f"parent: {parent}")
 
 
@@ -43,4 +32,4 @@ if __name__ == "__main__":
     print("")
     print(f"Adjacency list representation: {G}")
     s = int(input("Enter the starting vertex: "))
-    dijkstra(G, 0)
+    dijkstra(G, s)
