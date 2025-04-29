@@ -1,35 +1,36 @@
-# implementation of the Dijkstra's Algorithm
-# edge - (target, cost)
-from graph_filler import fill_graph
+# implementation of the Dijkstra's Algorithm using adjacency list graph representation
+# O(ElogV) time complexity
+import graph_utils
 from queue import PriorityQueue
 import math
 
-pq = PriorityQueue()
 
 def dijkstra(adjacency_list, start):
     vertices = len(adjacency_list)
-    cost = [math.inf for i in range(vertices)]
-    parent = [-1 for i in range(vertices)]
-    # cost[start] = 0
+    d = [math.inf for i in range(vertices)]
+    parent = [None for i in range(vertices)]
 
     pq = PriorityQueue()
+    d[start] = 0
+
     pq.put((0, start))
 
     while not pq.empty():
-        current_cost, u = pq.get()
-        cost[u] = current_cost
-        for v, edge_cost in adjacency_list[u]:
-            if cost[v] == math.inf:
+        current_dist, u = pq.get()
+        d[u] = current_dist
+        for v, edge_length in adjacency_list[u]:
+            if d[v] == math.inf:
                 parent[v] = u
-                pq.put((current_cost+edge_cost, v))
+                pq.put((current_dist+edge_length, v))
 
-    print(f"d: {cost}")
-    print(f"parent: {parent}")
+    return d, parent
 
 
 if __name__ == "__main__":
-    G = fill_graph()[0]
-    print("")
-    print(f"Adjacency list representation: {G}")
+    G = graph_utils.fill_graph(min_weight=0)[0]
+    graph_utils.print_graph(G)
+
     s = int(input("Enter the starting vertex: "))
-    dijkstra(G, s)
+    answer = dijkstra(G, s)
+    print(f"\nd: {answer[0]}")
+    print(f"parent: {answer[1]}\n")
