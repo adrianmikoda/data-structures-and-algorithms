@@ -1,5 +1,12 @@
-# filling the adajcency list of a graph with vertices numbered starting from 0
+# implementation of a graph adjacency list filler
 import random
+
+
+def print_graph(adjacency_list):
+    vertices = len(adjacency_list)
+    print(f"\nAdjacency list representation:")
+    for v in range(vertices):
+        print(f"{v}: {adjacency_list[v]}")
 
 
 def fill_graph(is_directed=None,
@@ -7,6 +14,7 @@ def fill_graph(is_directed=None,
                is_weighted=None,
                vertex_count=None,
                edge_count=None,
+               min_weight=None,
                max_weight=None,
                ):
     if is_directed == None:
@@ -60,14 +68,18 @@ def fill_graph(is_directed=None,
 
 
         if is_weighted:
+            if min_weight == None:
+                min_weight = int(input("Enter min weight: "))
+            else:
+                print(f"min_weight parameter has already been set to {min_weight}")
             if max_weight == None:
                 max_weight = int(input("Enter max weight: "))
             else:
                 print(f"max_weight parameter has already been set to {max_weight}")
-
-        if max_weight < 0:
-            raise ValueError(f"Invalid max weight: {max_weight} " +
-                             f"minimum allowed is 0")
+            
+            if max_weight < min_weight:
+                raise ValueError(f"Invalid max weight: {max_weight} " +
+                                 f"max_weight parameter cannot be less than min_weight")
 
         while cntr < edge_count:
             a = random.randint(0, vertex_count-1)
@@ -75,9 +87,9 @@ def fill_graph(is_directed=None,
             a_input = b
             b_input = a
             if is_weighted:
-                weight = random.randint(0, max_weight)
-                a_input = [b, weight]
-                b_input = [a, weight]
+                weight = random.randint(min_weight, max_weight)
+                a_input = (b, weight)
+                b_input = (a, weight)
 
             new_edge = True
             for edge in adjacency_list[a]:
