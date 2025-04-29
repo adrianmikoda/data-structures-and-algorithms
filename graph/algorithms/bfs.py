@@ -1,17 +1,18 @@
-# implementation of the Breadth-First Search algorithm
+# implementation of the Breadth-First Search algorithm using adjacency list graph representation
+# O(V+E) time complexity
+import graph_utils
 from collections import deque
-from graph_filler import fill_graph
 
 
-def BFS(adjacency_list, s):
-    n = len(adjacency_list)
-    visited = [False for i in range(n)]
-    distance = [0 for i in range(n)]
-    parent = [0 for i in range(n)]
+def BFS(adjacency_list, start):
+    vertices = len(adjacency_list)
+    visited = [False for i in range(vertices)]
+    d = [0 for i in range(vertices)]
+    parent = [None for i in range(vertices)]
 
     q = deque()
-    q.append(s)
-    visited[s] = True
+    q.append(start)
+    visited[start] = True
 
     while q:
         u = q.popleft()
@@ -19,12 +20,18 @@ def BFS(adjacency_list, s):
             if visited[v] is not True:
                 visited[v] = True
                 parent[v] = u
-                distance[v] = distance[u]+1
+                d[v] = d[u]+1
                 q.append(v)
 
-    return (visited, distance, parent)
+    return visited, d, parent
 
 
-graph = fill_graph()
-print(graph[0])
-print(BFS(graph[0], 0))
+if __name__ == "__main__":
+    G = graph_utils.fill_graph(is_weighted=False)[0]
+    graph_utils.print_graph(G)
+
+    s = int(input("Enter the starting vertex: "))
+    answer = BFS(G, s)
+    print(f"\nvisited: {answer[0]}")
+    print(f"d: {answer[1]}")
+    print(f"parent: {answer[2]}\n")
