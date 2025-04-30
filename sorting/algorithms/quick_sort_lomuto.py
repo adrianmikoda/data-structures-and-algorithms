@@ -34,7 +34,7 @@ def quick_sort(arr, start, end):
             end = pivot - 1
 
 
-# run test code only when script is executed directly
+# run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
     array = fill_array()
     print(f"\narray: {array}")

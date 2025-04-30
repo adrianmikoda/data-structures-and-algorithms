@@ -52,7 +52,7 @@ def bucket_sort(arr):
     return res
 
 
-# run test code only when script is executed directly
+# run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
     array = fill_array(0, 1000000-1)
     for i in range(0, len(array)):

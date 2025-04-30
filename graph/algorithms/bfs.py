@@ -26,6 +26,7 @@ def BFS(adjacency_list, start):
     return visited, d, parent
 
 
+# run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
     G = graph_utils.fill_graph(is_weighted=False)[0]
     graph_utils.print_graph(G)

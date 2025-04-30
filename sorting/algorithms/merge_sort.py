@@ -35,7 +35,7 @@ def merge_sort(arr):
     return merge(merge_sort(arr1), merge_sort(arr2))
 
 
-# run test only when script is executed directly
+# run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
     array = fill_array()
     print(f"\narray: {array}")
