@@ -17,11 +17,16 @@ def dijkstra(adjacency_list, start):
 
     while not pq.empty():
         current_dist, u = pq.get()
+        if current_dist > d[u]:
+            continue
+
         d[u] = current_dist
+        distance = current_dist+edge_length
         for v, edge_length in adjacency_list[u]:
-            if d[v] == math.inf:
+            if distance < d[v]:
                 parent[v] = u
-                pq.put((current_dist+edge_length, v))
+                d[u] = distance
+                pq.put((distance, v))
 
     return d, parent
 

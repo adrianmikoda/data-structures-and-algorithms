@@ -17,9 +17,9 @@ def bellman_ford(adjacency_list, start):
                     d[u] = d[v] + edge_length
                     parent[u] = v
 
-    for v in range(vertices):
-        for u, edge_length in adjacency_list[v]:
-            if d[u] > d[v] + edge_length:
+    for u in range(vertices):
+        for v, edge_length in adjacency_list[u]:
+            if d[v] > d[u] + edge_length:
                 print("found negative weight cycle")
 
     return d, parent
