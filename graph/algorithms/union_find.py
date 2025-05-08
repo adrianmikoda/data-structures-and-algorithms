@@ -5,8 +5,8 @@ class Union:
 
     def find(self, x):
         if self.parent[x] != x:
-            x = self.find(self.parent[x])
-        return x
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
 
     def union(self,x,y):
         x = self.find(x)
@@ -14,11 +14,9 @@ class Union:
 
         if x == y:
             return
-
-        if self.rank[x] > self.rank[y]:
+        if self.rank[y] > self.rank[x]:
             self.parent[x] = y
-        elif self.rank[x] < self.rank[y]:
-            self.parent[y] = x
         else:
             self.parent[y] = x
-            self.rank[x] += 1
+            if self.rank[x] == self.rank[y]:
+                self.rank[x] += 1
