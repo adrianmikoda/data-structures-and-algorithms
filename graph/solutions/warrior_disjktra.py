@@ -1,9 +1,7 @@
 # implementation of the solution using modified Dijkstra's Algorithm with exhaustion level tracking
 # O(ElogV) time complexity
-
 import math
 from queue import PriorityQueue
-from kol2testy import runtests
 
 
 def edges_to_adjacency_list(G):
@@ -25,13 +23,10 @@ def edges_to_adjacency_list(G):
 
 def warrior(G, s, t):
     adjacency_list, vertices = edges_to_adjacency_list(G)
-
-    # d[vertex][exhaustion (0-16)]
     d = [[math.inf for i in range(17)] for i in range(vertices)]
-
     pq = PriorityQueue()
 
-    pq.put((0, 0, s))  # cost, exhaustion, vertex
+    pq.put((0, 0, s))
     d[s][0] = 0
 
     while not pq.empty():
@@ -64,6 +59,3 @@ def warrior(G, s, t):
         minimum = cost if cost < minimum else minimum
 
     return minimum
-
-
-runtests(warrior, all_tests=True)
