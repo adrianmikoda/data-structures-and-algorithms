@@ -1,5 +1,5 @@
 # implementation of the Quick Select algorithm
-from array_filler import fill_array
+from sorting_utils import initialize_array
 from quick_sort_lomuto import quick_sort
 
 
@@ -25,18 +25,13 @@ def quick_select(arr, start, end, k):
     else:
         return quick_select(arr, q+1, end, k)
 
+if __name__ == "__main__":
+    array = initialize_array()
+    k = int(input("Index of the searched element k: "))
+    print(f"\narray: {array}")
+    print(f"answer using QuickSelect: {quick_select(array, 0, len(array)-1, k)}")  # O(n)
 
-array = fill_array()
-arr = array.copy()
-print(arr)
-print(quick_select(arr, 0, 5, 3))
-k = int(input("Index of the searched element k: "))
-
-
-print(f"\narray: {array}")
-print(f"answer using QuickSelect: {quick_select(array, 0, len(array)-1, k)}")  # O(n)
-
-# verifying the result by comparing with the sorted array
-quick_sort(array, 0, len(array)-1)
-print(f"array sorted: {array}")
-print(f"answer using QuickSort: {array[k]}")  # O(nlogn)
+    # verifying the result by comparing with the sorted array
+    quick_sort(array, 0, len(array)-1)
+    print(f"array sorted: {array}")
+    print(f"answer using QuickSort: {array[k]}")  # O(nlogn)

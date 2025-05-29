@@ -1,5 +1,5 @@
 # implementation of the Quick Sort algorithm using Hoare's partition scheme
-from array_filler import fill_array
+from sorting_utils import initialize_array
 import random
 
 
@@ -23,15 +23,19 @@ def partition(arr, start, end):
 
 
 def quick_sort(arr, start, end):
-    if start < end:
+    while start < end:
         pivot = partition(arr, start, end)
-        quick_sort(arr, start, pivot)
-        quick_sort(arr, pivot+1, end)
+        if pivot-start+1 < end-pivot:
+            quick_sort(arr, start, pivot)
+            start = pivot+1
+        else:
+            quick_sort(arr, pivot+1, end)
+            end = pivot
 
 
 # run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
-    array = fill_array()
+    array = initialize_array()
     print(f"\narray: {array}")
     quick_sort(array, 0, len(array)-1)
     print(f"sorted array: {array}")

@@ -1,5 +1,4 @@
 # implementation of the Topological Sort algorithm for a directed and acyclic graph
-from graph_filler import fill_graph
 from collections import deque
 
 

@@ -1,6 +1,6 @@
 # implementation of the Counting Sort algorithm
 # numbers in the [0, max_range] range
-from array_filler import fill_array
+from sorting_utils import initialize_array
 
 max_range = 9
 
@@ -24,7 +24,7 @@ def counting_sort(arr):
 
 # run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
-    array = fill_array(0, max_range)
+    array = initialize_array(min_number=0, max_number=max_range)
     print(f"\narray: {array}")
     print(f"sorted array: {counting_sort(array)}")
     

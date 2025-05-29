@@ -1,5 +1,5 @@
 # implementation of the Merge Sort algorithm
-from array_filler import fill_array
+from sorting_utils import initialize_array
 
 
 def merge(arr1, arr2):
@@ -37,6 +37,6 @@ def merge_sort(arr):
 
 # run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
-    array = fill_array()
+    array = initialize_array()
     print(f"\narray: {array}")
     print(f"sorted array: {merge_sort(array)}")

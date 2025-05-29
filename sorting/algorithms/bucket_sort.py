@@ -1,6 +1,6 @@
 # implementation of the Bucket Sort algorithm
 # sorting real numbers from the [0,1) range
-from array_filler import fill_array
+from sorting_utils import initialize_array
 
 
 class Node:
@@ -54,7 +54,7 @@ def bucket_sort(arr):
 
 # run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
-    array = fill_array(0, 1000000-1)
+    array = initialize_array(min_number=0, max_number=999999)
     for i in range(0, len(array)):
         array[i] /= 1000000
     print(f"\narray: {array}")

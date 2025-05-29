@@ -1,5 +1,5 @@
 # implementation of the Heap Sort algorithm
-from array_filler import fill_array
+from sorting_utils import initialize_array
 
 def parent(x):
     return (x-1)//2
@@ -39,7 +39,7 @@ def heap_sort(arr):
 
 # run test code only when script is executed directly (not imported)
 if __name__ == "__main__":
-    array = fill_array()
-    print(f"array {array}")
+    array = initialize_array()
+    print(f"\narray {array}")
     heap_sort(array)
     print(f"sorted array {array}")
