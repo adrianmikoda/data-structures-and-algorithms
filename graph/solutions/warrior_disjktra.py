@@ -6,7 +6,6 @@ from queue import PriorityQueue
 
 def edges_to_adjacency_list(G):
     vertices = 0
-
     for u, v, weight in G:
         vertices = v if v > vertices else vertices
         vertices = u if u > vertices else vertices

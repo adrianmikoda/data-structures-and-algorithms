@@ -28,6 +28,10 @@ def dijkstra(adjacency_list, start, resorts_marker, resorts_d):   # O(ElogV)
 
     while not pq.empty():
         current_cost, current_vertex = pq.get()
+
+        if current_cost > d[current_vertex]:
+            continue
+
         for v, cost in adjacency_list[current_vertex]:
             if current_cost + cost < d[v]:
                 if resorts_marker[v] is not False:

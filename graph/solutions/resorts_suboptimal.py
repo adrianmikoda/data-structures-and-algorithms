@@ -28,6 +28,10 @@ def dijkstra(adjacency_list, start, blocked_vertices, resorts_marker, resorts_d)
 
     while not pq.empty():
         current_cost, current_vertex = pq.get()
+
+        if current_cost > d[current_vertex]:
+            continue
+
         for v, cost in adjacency_list[current_vertex]:
             if current_cost + cost < d[v] and blocked_vertices[v] is False:
                 if resorts_marker[v] is not False:
