@@ -1,7 +1,7 @@
 # implementation of the Kruskal's Algorithm
 # O(ElogV) time complexity
 
-class Union:
+class UnionFind:
     def __init__(self,n):
         self.parent = [i for i in range(n)]
         self.rank = [0 for i in range(n)]
@@ -37,7 +37,7 @@ edge_list = [(8, 1, 4),
              (15, 0, 3)]
 
 vertices = 6
-union_find_handler = Union(vertices)
+union_find_handler = UnionFind(vertices)
 edge_list_sorted = sorted(edge_list)
 mst = []
 for weight,a,b in edge_list_sorted:

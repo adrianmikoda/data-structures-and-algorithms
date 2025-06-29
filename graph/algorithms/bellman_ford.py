@@ -11,11 +11,11 @@ def bellman_ford(adjacency_list, start):
 
     d[start] = 0
     for _ in range(vertices-1):
-        for v in range(vertices):
-            for u, edge_length in adjacency_list[v]:
-                if d[v] + edge_length < d[u]:
-                    d[u] = d[v] + edge_length
-                    parent[u] = v
+        for u in range(vertices):
+            for v, edge_length in adjacency_list[u]:
+                if d[u] + edge_length < d[v]:
+                    d[v] = d[u] + edge_length
+                    parent[v] = u
 
     for u in range(vertices):
         for v, edge_length in adjacency_list[u]:
