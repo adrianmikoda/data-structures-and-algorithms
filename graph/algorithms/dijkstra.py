@@ -11,22 +11,18 @@ def dijkstra(adjacency_list, start):
     parent = [None for i in range(vertices)]
 
     pq = PriorityQueue()
-    d[start] = 0
-
     pq.put((0, start))
 
     while not pq.empty():
         current_dist, u = pq.get()
         if current_dist > d[u]:
             continue
-
         d[u] = current_dist
-        distance = current_dist+edge_length
+
         for v, edge_length in adjacency_list[u]:
-            if distance < d[v]:
+            if current_dist+edge_length < d[v]:
                 parent[v] = u
-                d[u] = distance
-                pq.put((distance, v))
+                pq.put((current_dist+edge_length, v))
 
     return d, parent
 
