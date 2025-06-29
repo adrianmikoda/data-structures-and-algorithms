@@ -31,8 +31,7 @@ def merge_sort(arr):
     if n <= 1:
         return arr
 
-    arr1, arr2 = arr[:n//2], arr[n//2:]
-    return merge(merge_sort(arr1), merge_sort(arr2))
+    return merge(merge_sort(arr[:n//2]), merge_sort(arr[n//2:]))
 
 
 # run test code only when script is executed directly (not imported)

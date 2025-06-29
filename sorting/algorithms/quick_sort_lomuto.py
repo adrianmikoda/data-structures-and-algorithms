@@ -4,16 +4,10 @@ import random
 
 
 def partition(arr, start, end):
-    mid = (start+end) // 2
-    pivot_pos = end
-    if (arr[start] > arr[mid]) ^ (arr[start] > arr[end]):
-        pivot_pos = start
-    if (arr[mid] > arr[start]) ^ (arr[mid] > arr[end]):
-        pivot_pos = mid
-
-    arr[pivot_pos], arr[end] = arr[end], arr[pivot_pos]
-
+    pivot_pos = random.randint(start, end)
+    arr[end], arr[pivot_pos] = arr[pivot_pos], arr[end]
     i = start-1
+    
     for j in range(start, end):
         if arr[j] <= arr[end]:
             i += 1
