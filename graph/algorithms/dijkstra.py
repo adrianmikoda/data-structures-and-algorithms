@@ -18,14 +18,12 @@ def dijkstra(adjacency_list, start):
         if current_dist > d[u]:
             continue
         
-        
         for v, edge_length in adjacency_list[u]:
             if current_dist+edge_length < d[v]:
                 d[u] = current_dist+edge_length
                 parent[v] = u
                 pq.put((current_dist+edge_length, v))
                 
-
     return d, parent
 
 
