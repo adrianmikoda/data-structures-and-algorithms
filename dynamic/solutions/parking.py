@@ -13,11 +13,13 @@ def parking(X, Y):
         f[0][p] = abs(X[0] - Y[p])
         f[0][p] = f[0][p-1] if f[0][p-1] < f[0][p] else f[0][p]
 
-    for w in range(1, n):
-        for p in range(w, m):
-            f[w][p] = min(f[w-1][p-1] + abs(X[w] - Y[p]), f[w][p-1])
-    for row in f:
-        print(row)
+    for s in range(1, n):
+        for p in range(s, m):
+            f[s][p] = min(f[s-1][p-1] + abs(X[s] - Y[p]), f[s][p-1])
+            
     return f[n-1][m-1]
 
-print(parking([3,6,10,14], [1,4,5,10,11,13,17]))
+
+X = [3,6,10,14]
+Y = [1,4,5,10,11,13,17]
+print(parking(X, Y))
