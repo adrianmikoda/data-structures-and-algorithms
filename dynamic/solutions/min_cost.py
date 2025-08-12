@@ -24,5 +24,8 @@ def min_cost(O, C, T, L):
 
     return min(dp[0][n-1], dp[1][n-1])
 
-
-print(min_cost([17, 20, 11, 5, 12], [9, 7, 7, 7, 3], 7, 25))
+O = [17, 20, 11, 5, 12]
+C = [9, 7, 7, 7, 3]
+T = 7
+L = 25
+print(min_cost(O, C, T, L))

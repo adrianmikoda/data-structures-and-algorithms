@@ -46,9 +46,9 @@ def armstrong(B, G, s, t):
         answer = min(answer, d_from_start[i] + d_from_end[i] * (p/q))
     return int(answer)
 
-B = [ (1, 1, 2), (2, 2, 3) ]
-G = [ (0,1,6), (1,4,7), (4,3,4),
- (3,2,4), (2,0,3), (0,3,6) ]
+B = [(1, 1, 2), (2, 2, 3)]
+G = [(0,1,6), (1,4,7), (4,3,4),
+     (3,2,4), (2,0,3), (0,3,6)]
 s = 0
 t = 4
 print(armstrong(B, G, s, t))
