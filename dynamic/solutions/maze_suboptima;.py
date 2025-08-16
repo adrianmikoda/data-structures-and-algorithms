@@ -24,12 +24,10 @@ def maze(L):
             if L[row][col] == '#': continue
             if dpd[row][col-1] == -1 and dpu[row][col-1] == -1: continue
             row1, row2 = row-1, row+1
-            while row1 >= 0:
-                if L[row1][col] == '#': break
+            while row1 >= 0 and L[row1][col] == '.':
                 dpu[row1][col] = max(dpu[row1][col], dpu[row1+1][col] + 1)
                 row1 -= 1
-            while row2 < n:
-                if L[row2][col] == '#': break
+            while row2 < n and L[row2][col] == '.':
                 dpd[row2][col] = max(dpd[row2][col], dpd[row2-1][col] + 1)
                 row2 += 1
 
