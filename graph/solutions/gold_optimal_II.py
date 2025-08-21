@@ -1,12 +1,10 @@
-# suboptimal solution
-# O(V^3logV)time complexity
+# optimal solution
+# O(V^2logV)time complexity
 from queue import PriorityQueue
 import math
 
 
-def dijkstra(start, end, G, r, flag):
-    if start == end:
-        return 0
+def dijkstra(start, G, r, flag):
     n = len(G)
     pq = PriorityQueue()
     distance = [math.inf for _ in range(n)]
@@ -32,15 +30,19 @@ def dijkstra(start, end, G, r, flag):
                     distance[v] = new_cost
                     pq.put((new_cost, v))
 
-    return distance[end]
+    return distance
 
 
 def gold(G, V, s, t, r):
     n = len(V)
 
     answer = math.inf
+    distance_from_s = dijkstra(s, G, r, False)
+    distance_to_t = dijkstra(t, G, r, True)
+
     for robbed_castle in range(n):
-        total_cost = dijkstra(s, robbed_castle, G, r, False) - V[robbed_castle] + dijkstra(robbed_castle, t, G, r, True)
+        total_cost = distance_from_s[robbed_castle] - V[robbed_castle] + distance_to_t[robbed_castle]
+
         answer = total_cost if total_cost < answer else answer
 
     return answer
