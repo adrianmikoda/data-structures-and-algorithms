@@ -31,28 +31,26 @@ def quickselect(left, right, array, k):
 
 
 def picture(T, m, k):
-    student_array = [student for student in T]
     n = len(T)
+    array = T[:]
+    row_elements = [deque() for _ in range(m)]
 
     starting_index = 0
     next_starting_index = k
-
-    row_elements = [deque() for _ in range(m)]
-
     for row in range(m-1, -1, -1):
-        quickselect(starting_index, n-1, student_array, next_starting_index-1)
+        quickselect(starting_index, n-1, array, next_starting_index-1)
         for i in range(starting_index, next_starting_index):
-            row_elements[row].append(student_array[i])
+            row_elements[row].append(array[i])
         k += 1
         starting_index = next_starting_index
         next_starting_index += k
 
-    index = 0
-    while index < n:
+    i = 0
+    while i < n:
         for row in range(m):
             if row_elements[row]:
-                T[index] = row_elements[row].popleft()
-                index += 1
+                T[i] = row_elements[row].popleft()
+                i += 1
 
     return None
 
