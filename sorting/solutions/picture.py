@@ -19,15 +19,14 @@ def partition(left, right, array):
 
 
 def quickselect(left, right, array, k):
-    pivot = partition(left, right, array)
-    while pivot != k:
-        pivot = partition(left, right, array)
-        if pivot < k:
-            left = pivot + 1
+    while left <= right:
+        p = partition(left, right, array)
+        if p < k:
+            left = p + 1
         else:
-            right = pivot - 1
+            right = p - 1
 
-    return array[pivot]
+    return array[p]
 
 
 def picture(T, m, k):

@@ -18,10 +18,9 @@ def dfs(adjacency_list):
         for v in adjacency_list[current_vertex]:
             if pre_order[v] is None:
                 parent[v] = current_vertex
-                temp = dfs_visit(v)
-                low[current_vertex] = temp if temp < low[current_vertex] else low[current_vertex]
+                low[current_vertex] = min(dfs_visit(v), low[current_vertex])
             elif v is not parent[current_vertex]:
-                low[current_vertex] = pre_order[v] if pre_order[v] < low[current_vertex] else low[current_vertex]
+                low[current_vertex] = min(pre_order[v], low[current_vertex])
 
         return low[current_vertex]
 
