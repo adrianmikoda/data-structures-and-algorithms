@@ -15,7 +15,7 @@ def battle(P, K, R):
     stack = deque()
 
     for i in range(4*n + 4*m):
-        if markers[i] and markers[i] > 0:
+        if markers[i] is not None and markers[i] > 0:
             stack.append((i, markers[i]))
         elif markers[i] == 0:
             while stack:

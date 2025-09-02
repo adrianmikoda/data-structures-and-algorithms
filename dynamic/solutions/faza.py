@@ -8,25 +8,25 @@ def wyprawy(WI):
     answer = 0
     dp = [0 for _ in range(n)]
 
-    for index in range(n):
-        s, t, k = WI[index]
-        if index > 0:
-            dp[index] = max(dp[index-1], dp[index])
+    for i in range(n):
+        start, end, value = WI[i]
+        if i > 0:
+            dp[i] = max(dp[i-1], dp[i])
 
         left = 0
         right = n
 
         while left < right:
-            mid = left + (right-left)//2
-            if WI[mid][0] < t:
+            mid = left + (right - left) // 2
+            if WI[mid][0] < end:
                 left = mid + 1
             else:
                 right = mid
 
         if left >= n:
-            answer = max(answer, dp[index] + k)
+            answer = max(answer, dp[i] + value)
         else:
-            dp[left] = max(dp[left], dp[index] + k)
+            dp[left] = max(dp[left], dp[i] + value)
 
     return answer
 
