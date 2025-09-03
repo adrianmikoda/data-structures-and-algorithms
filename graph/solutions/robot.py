@@ -23,13 +23,9 @@ def robot(G, P):
                 if s < distance_matrix[u][v]:
                     distance_matrix[u][v] = s
 
-    previous = P[0]
-    P_length = len(P)
     answer = 0
-    for i in range(1, P_length):
-        current = P[i]
-        answer += distance_matrix[previous][current]
-        previous = current
+    for i in range(0, len(P)-1):
+        answer += distance_matrix[i][i+1]
 
     return answer
 

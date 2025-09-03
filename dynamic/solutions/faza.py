@@ -6,7 +6,7 @@ def wyprawy(WI):
     WI.sort()
 
     answer = 0
-    dp = [0 for _ in range(n)]
+    dp = [0 for _ in range(n+1)]
 
     for i in range(n):
         start, end, value = WI[i]
@@ -23,12 +23,9 @@ def wyprawy(WI):
             else:
                 right = mid
 
-        if left >= n:
-            answer = max(answer, dp[i] + value)
-        else:
-            dp[left] = max(dp[left], dp[i] + value)
+        dp[left] = max(dp[left], dp[i]+value)
 
-    return answer
+    return dp[n]
 
 
 WI = [(1, 5, 100), (3, 4, 70), (2, 4, 90), (4, 7, 60)]
