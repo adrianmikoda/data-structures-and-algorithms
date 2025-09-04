@@ -45,12 +45,11 @@ def kurt(D):
     while queue:
         row, col, went_through = queue.popleft()
         current_turn_count = visited[row][col][went_through]
-        flag = False
         if row == n-1 and col == n-1:
             continue
-
-        for move_number in range(4):
-            if went_through == 0:
+        
+        if went_through == 0:
+            for move_number in range(4):
                 move = moves[move_number]
                 if (row+2*move[0] >= 0 and row+2*move[0] < n and
                     col+2*move[1] >= 0 and col+2*move[1] < n and
@@ -69,7 +68,6 @@ def kurt(D):
                 visited[next_coords[0]][next_coords[1]][went_through] > current_turn_count + 1
             ):
                 visited[next_coords[0]][next_coords[1]][went_through] = current_turn_count + 1
-                flag = True
                 queue.append((next_coords[0], next_coords[1], went_through))
 
                 if went_through == 0:
