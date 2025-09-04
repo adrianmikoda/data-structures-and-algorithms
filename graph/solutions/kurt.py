@@ -5,43 +5,35 @@ from collections import deque
 def kurt(D):
     n = len(D)
     moves = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-    targets = [[] for _ in range(4)]
+    targets = [[[None for __ in range(n)] for _ in range(n)] for _ in range(4)]
 
-    array = [[None for __ in range(n)] for _ in range(n)]
     for row in range(n):
         for col in range(n-1, -1, -1):
             if D[row][col] == '0':
-                array[row][col] = (row, col)
+                targets[0][row][col] = (row, col)
                 if col+1 < n and D[row][col+1] == '0':
-                    array[row][col] = array[row][col+1]
-    targets[0] = array[:]
+                    targets[0][row][col] = targets[0][row][col+1]
 
-    array = [[None for __ in range(n)] for _ in range(n)]
     for col in range(n):
         for row in range(n-1, -1, -1):
             if D[row][col] == '0':
-                array[row][col] = (row, col)
+                targets[1][row][col] = (row, col)
                 if row+1 < n and D[row+1][col] == '0':
-                    array[row][col] = array[row+1][col]
-    targets[1] = array[:]
+                    targets[1][row][col] = targets[1][row+1][col]
 
-    array = [[None for __ in range(n)] for _ in range(n)]
     for row in range(n):
         for col in range(n):
             if D[row][col] == '0':
-                array[row][col] = (row, col)
+                targets[2][row][col] = (row, col)
                 if col-1 >= 0 and D[row][col-1] == '0':
-                    array[row][col] = array[row][col-1]
-    targets[2] = array[:]
+                    targets[2][row][col] = targets[2][row][col-1]
 
-    array = [[None for __ in range(n)] for _ in range(n)]
     for col in range(n):
         for row in range(n):
             if D[row][col] == '0':
-                array[row][col] = (row, col)
+                targets[3][row][col] = (row, col)
                 if row-1 >= 0 and D[row-1][col] == '0':
-                    array[row][col] = array[row-1][col]
-    targets[3] = array[:]
+                    targets[3][row][col] = targets[3][row-1][col]
 
     visited = [[[float('inf') for ___ in range(2)] for __ in range(n)] for _ in range(n)]
     visited[0][0][0] = 0
